@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: rhl-tournament-bot
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8000
+    # Auto-deploy from GitHub
+    autoDeploy: true
+    # Resource limits for free tier
+    disk: 1GB
+    # Health check settings
+    healthCheck:
+      path: /
+      intervalSeconds: 30
+      timeoutSeconds: 10
+      unhealthyThresholdCount: 3
+    # Environment variables (set in Render dashboard)
+    # HAXBALL_TOKEN=your_token_here
+    # OWNER_PASSWORD=your_password
+    # DISCORD_WEBHOOK=your_webhook_url
+    # DISCORD_SERVER_INVITE=your_discord_invite
