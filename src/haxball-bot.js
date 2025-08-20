@@ -129,7 +129,7 @@ class HaxballBot {
         
         // Create JSDOM environment and load Haxball API
         const { JSDOM } = require('jsdom');
-        const fetch = require('node-fetch');
+        const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
         
         console.log('🌐 Loading Haxball Headless API...');
         
